@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+            <!-- adding three input boxes and a button -->
+            <div class="form-group">
+                <input formControlName="title" placeholder="Title" class="form-control title-bold"><br>
+                <input formControlName="description" placeholder="Description" class="form-control"><br>
+                <input formControlName="imageUrl" placeholder="Image" class="form-control"><br>
+                <button type="submit" class="btn btn-success">Add Movie</button>
+            </div>
+        </form>
+    </div>
+</div>

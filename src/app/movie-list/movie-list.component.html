@@ -1,0 +1,36 @@
+
+<div class="row" *ngIf="displayList">
+    <div class="col-md-6">
+        <ul *ngIf="displayList" class="list-group">
+            <li *ngFor="let movie of movieList; let i = index" class="list-group-item" [class.active]="movie === selectedMovie" (click)="onSelect(movie)" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <p *ngIf="!movieIsBeingEdited[i]" class="font-bold">{{movie.title}}</p>
+                        <input *ngIf="movieIsBeingEdited[i]" [(ngModel)]="movie.title"><br>
+                        <input *ngIf="movieIsBeingEdited[i]" [(ngModel)]="movie.description"><br>
+                        <input *ngIf="movieIsBeingEdited[i]" [(ngModel)]="movie.imageUrl"><br>
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="!movieIsBeingEdited[i]" class="btn btn-primary view"
+                        (click)="onViewMovieDetails(movie)">View</button>
+                        <button *ngIf="!movieIsBeingEdited[i]" (click)="onStartEditMovie(i)" class="btn btn-warning edit">Edit</button>
+                        <button *ngIf="movieIsBeingEdited[i]" (click)="onSaveEditMovie(i)" class="btn btn-success">Save</button>
+                        <button *ngIf="!movieIsBeingEdited[i]" (click)="onDeleteMovie(i)" class="btn btn-danger delete">X</button>
+                       
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6" *ngIf="movieBeingDisplayed">
+        <div class="card">
+            <img class="card-img-top" [src]="movieBeingDisplayed.imageUrl" alt="card image cap" height="100">
+            <div class="card-body">
+                <h5 class="card-title">{{movieBeingDisplayed.title}}</h5>
+                <p class="card-text">
+                    {{movieBeingDisplayed.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
